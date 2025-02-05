@@ -10,12 +10,3 @@ provider "aws" {
   region = "ap-southeast-1"  # AWS region where your resources will be created
 }
 
-# Create the S3 bucket
-resource "aws_s3_bucket" "static_bucket" {
-  bucket        = "chichaos3.sctp-sandbox.com"  # Replace with your desired bucket name
-  force_destroy = true
-
-  tags = {
-    Environment = "Sandbox"
-  }
-}
