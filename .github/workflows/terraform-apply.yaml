@@ -8,7 +8,29 @@ env:
   AWS_REGION: ap-southeast-1  
 
 jobs:
+  #check-previous-run:  # First job: Check if workflow has run before
+  #  runs-on: ubuntu-latest
+  #  outputs:
+  #    found: ${{ steps.check.outputs.found }}  # Saves output for use in the next job
+  #  steps:
+  #    - name: Check if workflow has already run
+  #      id: check
+  #      run: |
+  #        response=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+  #                        -H "Accept: application/vnd.github.v3+json" \
+  #                        "https://api.github.com/repos/${{ github.repository }}/actions/runs?branch=main&status=completed")
+
+  #        runs_count=$(echo "$response" | jq '.total_count')
+
+  #        if [[ "$runs_count" -gt 0 ]]; then
+  #          echo "found=true" >> $GITHUB_OUTPUT
+  #        else
+  #          echo "found=false" >> $GITHUB_OUTPUT
+  #        fi
+
   CICD:
+  #  needs: check-previous-run  # This job depends on `check-previous-run`
+  #  if: needs.check-previous-run.outputs.found == 'false'  # Only run if no previous execution exists
     runs-on: ubuntu-latest
 
     steps:
