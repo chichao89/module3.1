@@ -10,15 +10,11 @@ provider "aws" {
   region = "ap-southeast-1"  # AWS region where your resources will be created
 }
 
-provider "aws" {
-  region = "ap-southeast-1"
-}
-
 resource "aws_instance" "my_instance" {
   ami           = "ami-0c55b159cbfafe1f0"  # Replace with a valid AMI ID in your region
   instance_type = "t2.micro"  # Small instance type suitable for testing
 
   tags = {
-    Name = "MyTerraformInstance"
+    Name = "CCMyTerraformInstance"
   }
 }
